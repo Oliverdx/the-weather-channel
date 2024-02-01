@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import fetchWeather from './utils/fetchWeather';
 import { cardData } from './types/card';
+import { GlobalStyle, MainStyle } from './styles/mainStyle';
 
 const App: React.FC = () => {
 
@@ -22,13 +23,16 @@ const App: React.FC = () => {
   }, []);
 
 
-  return <div>
-    <div>
-      {Object.keys(weather).length > 0 &&
-        <p>{(weather as cardData).temperature}</p>
-      }
-    </div>
-  </div>;
+  return <>
+    <GlobalStyle />
+    <MainStyle>
+      <h1>Entre com os dados de latitude e longitude<br />
+        para adicionar um novo card</h1>
+
+      <p>Latitude</p>
+      <p>Longitude</p>
+    </MainStyle >
+  </>;
 };
 
 export default App;
