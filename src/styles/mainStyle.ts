@@ -39,4 +39,3 @@ export const MainStyle = styled.div`
   background: linear-gradient(320deg, var(--dark-gray) 0%, #000 100%);
 `;
 
-
