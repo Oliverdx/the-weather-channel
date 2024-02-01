@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "es2020",
     "lib": ["dom", "es2020"],
-    "jsx": "react",
+    "jsx": "preserve",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
   }
 }
