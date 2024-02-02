@@ -7,13 +7,14 @@ async function fetchWeather(latitude: string, longitude: string){
   try{
 
     // Avoiding use NPM package, the NPM package has a automatically refresh
-    // and we want to update manually
+    // and for now we want to update manually
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}`;
   
     const response = await fetch(url.concat(normalizeParams(PARAMS)));
     const {current_units,  current } = await response.json();
 
     weatherData = {
+      id: (Math.random() + 1).toString(36).substring(7),
       temperature: `${current?.temperature_2m}${current_units?.temperature_2m}`,
       humidity:`${current?.relative_humidity_2m}${current_units?.relative_humidity_2m}`,
       apparent_temperature:`${current?.apparent_temperature}${current_units?.apparent_temperature}`,

@@ -1,11 +1,16 @@
-export type weatherParams = {
+export interface weatherParams {
   current: string[];
   timezone: string;
 }
 
-export type cardData = {
+export interface cardData {
+  id: string,
   temperature: string,
   humidity: string,
   apparent_temperature: string,
   wind_speed: string
+}
+
+export interface cardList {
+  cards: cardData[]
 }
