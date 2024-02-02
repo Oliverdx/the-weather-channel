@@ -29,6 +29,7 @@ export const InputWrapper = styled.div`
     background: none;
     border: none;
     border-bottom: 2px solid #FFF;
+    font-size: 1em;
     color: #FFF;
     outline: none;
   }
