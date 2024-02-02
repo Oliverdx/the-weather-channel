@@ -7,12 +7,13 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     color: #FFF;
-    font: 14px "Fira Sans", sans-serif;
+    font-size: 16px;
   }
 
   *{
     margin: 0;
     padding: 0;
+    font-family: "Fira Sans", sans-serif;
   }
 
   :root{
