@@ -6,6 +6,7 @@ import { GlobalStyle, MainStyle } from './styles/mainStyle';
 import Input from './components/Input/index';
 
 import styled from "styled-components";
+import Button from './components/Button/index';
 
 export const AddData = styled.div`
   width: 100%;
@@ -66,6 +67,9 @@ const App: React.FC = () => {
             required
           />
         </TwoColumns>
+        <Button>
+          Adicionar
+        </Button>
       </AddData>
     </MainStyle >
   </>;
