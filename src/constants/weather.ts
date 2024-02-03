@@ -36,3 +36,34 @@ export const TRANSLATE_WEATHER: weatherCodeType = {
     99: "Trovoada com granizo forte"
 };
 
+export const TRANSLATE_ICONS: weatherCodeType = {
+  0: "/icons/sun.svg",
+  1: "/icons/sun.svg",
+  2: "/icons/fog_day.svg",
+  3: "/icons/cloudy.svg",
+  45: "/icons/cloudy.svg",
+  48: "/icons/cloudy.svg",
+  51: "/icons/rain.svg",
+  53: "/icons/rain.svg",
+  55: "/icons/rain_strong.svg",
+  56: "/icons/rain_snow.svg",
+  57: "/icons/rain_snow.svg",
+  61: "/icons/rain.svg",
+  63: "/icons/rain.svg",
+  65: "/icons/rain_strong.svg",
+  66: "/icons/rain_snow.svg",
+  67: "/icons/rain_snow.svg",
+  71: "/icons/snow.svg",
+  73: "/icons/snow.svg",
+  75: "/icons/snow.svg",
+  77: "/icons/snow.svg",
+  80: "/icons/sun_raining.svg",
+  81: "/icons/sun_raining.svg",
+  82: "/icons/sun_strom.svg",
+  85: "/icons/snow_summer.svg",
+  86: "/icons/snow_summer.svg",
+  95: "/icons/storm.svg",
+  96: "/icons/storm.svg",
+  99: "/icons/storm.svg"
+};
+
