@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+
+import { atomData, weatherCardsState } from "../../recoil/atoms";
 
 import {
   WeatherCardWrapper,
@@ -6,10 +9,9 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  SmallInfoWrapper,
   SmallInfo
 } from "./style";
-import { useRecoilState } from "recoil";
-import { atomData, weatherCardsState } from "../../recoil/atoms";
 
 function WeatherCard({ data }: { data: atomData }) {
   const [updatingCard, setUpdatingCard] = useState(false);
@@ -58,11 +60,20 @@ function WeatherCard({ data }: { data: atomData }) {
       <p className="weather_description">{data.weather}</p>
     </CardBody>
     <CardFooter>
-      <SmallInfo>
-        <span>{data.humidity}</span><br />
-        <span>{data.apparent_temperature}</span><br />
-        <span>{data.wind_speed}</span>
-      </SmallInfo>
+      <SmallInfoWrapper>
+        <SmallInfo>
+          <img src="/icons/humidity.svg" />
+          <span>{data.humidity}</span>
+        </SmallInfo>
+        <SmallInfo>
+          <img src="/icons/apparent_temperature.svg" />
+          <span>{data.apparent_temperature}</span>
+        </SmallInfo>
+        <SmallInfo>
+          <img src="/icons/wind_speed.svg" />
+          <span>{data.wind_speed}</span>
+        </SmallInfo>
+      </SmallInfoWrapper>
       <CardTemperature>{data.temperature}</CardTemperature>
     </CardFooter>
   </WeatherCardWrapper>

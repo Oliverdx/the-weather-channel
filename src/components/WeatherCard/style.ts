@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const WeatherCardWrapper = styled.div`
   display: grid;
-  grid-template-rows: 50px auto 50px;
+  grid-template-rows: 50px auto 60px;
   grid-gap: 20px;
   width: 300px;
   height: 400px;
@@ -75,9 +75,23 @@ export const CardBody = styled.section`
 `;
 
 export const CardFooter = styled.section`
-display: flex;
-justify-content: space-between;`;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-export const SmallInfo = styled.div`
+export const SmallInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SmallInfo = styled.span`
+  display: flex;
+  align-items: center;
   font-size: 15px;
+
+  img{
+    height: 20px;
+    margin: 0 10px 0 0;
+  }
 `;
