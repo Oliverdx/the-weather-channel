@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ForecastPageWrapper = styled.div`
   position: relative;
   height: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh + 50px);
   padding: 50px 0 0;
 
   h1{
@@ -20,7 +20,7 @@ export const ForecastPageWrapper = styled.div`
   }
 
   .add_forecast-btn{
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 50px;
     
