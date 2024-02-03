@@ -7,14 +7,17 @@ import { atomData, weatherCardsState } from "../recoil/atoms";
 
 import WeatherCard from "../components/WeatherCard";
 import { CardsWrapper } from "../styles/forecasts-style";
-import { TRANSLATE_WEATHER } from "../constants/weather";
+import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../constants/weather";
 
 function Forecasts() {
   const cardList: atomData[] = useRecoilValue(weatherCardsState);
 
   const mockData: atomData = {
+    latitude: "14.5153",
+    longitude: "40.5013",
     apparent_temperature: "23.3°C",
-    weather: TRANSLATE_WEATHER[95],
+    weather: TRANSLATE_WEATHER[65],
+    weather_icon: TRANSLATE_ICONS[65],
     humidity: "82%",
     id: "38i04",
     temperature: "21.9°C",
