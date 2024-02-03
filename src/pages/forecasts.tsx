@@ -2,25 +2,45 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom"
 
-import { cardData } from "../types/card";
-import { weatherCardsState } from "../recoil/atoms";
+import { atomData, weatherCardsState } from "../recoil/atoms";
+
+import WeatherCard from "../components/WeatherCard";
+import { ForecastPageWrapper, CardsWrapper } from "../styles/forecasts-style";
+import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../constants/weather";
 
 function Forecasts() {
-  const cardList: cardData[] = useRecoilValue(weatherCardsState);
+  const cardList: atomData[] = useRecoilValue(weatherCardsState);
 
-  return <>
-    <h1>Weather Cards</h1>
-    {cardList.length > 0 && cardList.map(card => (
-      <div key={card.id}>
-        <h3>{card.temperature}</h3>
-        <span>{card.humidity}</span><br />
-        <span>{card.apparent_temperature}</span><br />
-        <span>{card.wind_speed}</span>
-      </div>)
-    )}
+  const mockData: atomData = {
+    latitude: "14.5153",
+    longitude: "40.5013",
+    apparent_temperature: "23.3°C",
+    weather: TRANSLATE_WEATHER[1],
+    weather_icon: TRANSLATE_ICONS[1],
+    humidity: "82%",
+    id: "38i04",
+    temperature: "21.9°C",
+    wind_speed: "12.2km/h",
+    updating: false
+  }
 
-    <Link to="/add-forecasts">Add new Forecast</Link>
-  </>
+  return <ForecastPageWrapper>
+    <h1>The Weather Channel - Seu canal do tempo</h1>
+    {cardList.length === 0 &&
+      <h2>Clique no Icone abaixo para adicionar a primeira previsão</h2>
+    }
+
+    <CardsWrapper>
+      {cardList.length > 0 && cardList.map(card => (
+        <WeatherCard key={card.id} data={card} />))
+      }
+      <WeatherCard key={mockData.id} data={mockData} />
+    </CardsWrapper>
+
+    <Link to="/add-forecasts" className="add_forecast-btn">
+      <img src="/icons/add_forecast.svg" alt="Add new Forecast" />
+    </Link>
+  </ForecastPageWrapper>
 }
 
 export default Forecasts;
