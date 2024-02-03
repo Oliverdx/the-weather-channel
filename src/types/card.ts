@@ -5,6 +5,7 @@ export interface weatherParams {
 
 export interface cardData {
   id: string,
+  weather: string,
   temperature: string,
   humidity: string,
   apparent_temperature: string,

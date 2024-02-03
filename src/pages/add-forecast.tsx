@@ -29,7 +29,7 @@ function AddForecasts() {
         ...oldCards,
         { ...data, updating: false },
       ];
-      window.localStorage.setItem('weatherCards', JSON.stringify(newCardList))
+      window.localStorage.setItem('weatherCards', JSON.stringify(newCardList));
 
       return newCardList;
     });

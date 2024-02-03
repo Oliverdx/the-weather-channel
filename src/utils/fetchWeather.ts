@@ -1,4 +1,4 @@
-import { PARAMS } from "../constants/weather";
+import { PARAMS, TRANSLATE_WEATHER } from "../constants/weather";
 import { cardData, weatherParams } from "../types/card";
 
 async function fetchWeather(latitude: string, longitude: string){
@@ -15,6 +15,7 @@ async function fetchWeather(latitude: string, longitude: string){
 
     weatherData = {
       id: (Math.random() + 1).toString(36).substring(7),
+      weather: `${TRANSLATE_WEATHER[current?.weather_code]}`,
       temperature: `${current?.temperature_2m}${current_units?.temperature_2m}`,
       humidity:`${current?.relative_humidity_2m}${current_units?.relative_humidity_2m}`,
       apparent_temperature:`${current?.apparent_temperature}${current_units?.apparent_temperature}`,
