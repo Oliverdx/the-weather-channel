@@ -22,6 +22,12 @@ export const CardHeader = styled.section`
   align-items: center;
   justify-content: space-between;
 
+  .position{
+    p{
+      margin: 0;
+    }
+  }
+
   .updating-btn{
     width: 20px;
     height: 30px;

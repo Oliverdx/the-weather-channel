@@ -39,7 +39,10 @@ function WeatherCard({ data }: { data: atomData }) {
 
   return <WeatherCardWrapper>
     <CardHeader>
-      <p>Vitória da Conquista</p>
+      <div className="position">
+        <p>Lat: {data.latitude}</p>
+        <p>Log: {data.longitude}</p>
+      </div>
       <button className="updating-btn" onClick={() => UpdateCard()}>
         <img
           className={`updating-btn_image-${updatingCard ? "updating" : "update"}`}
@@ -50,7 +53,7 @@ function WeatherCard({ data }: { data: atomData }) {
     </CardHeader>
     <CardBody>
       <div className="weather">
-        <img className="weather_image" src="/icons/weather-icon.svg" alt="Weather icon" />
+        <img className="weather_image" src={data.weather_icon} alt="Weather icon" />
       </div>
       <p className="weather_description">{data.weather}</p>
     </CardBody>
