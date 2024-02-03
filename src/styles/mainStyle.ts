@@ -17,7 +17,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root{
-    --dark-gray: #444
+    --dark-gray: #444;
+    --darkest-gray: #111;
   }
 
   @font-face {
@@ -35,8 +36,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const MainStyle = styled.div`
   display: block;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(320deg, var(--dark-gray) 0%, #000 100%);
 `;
 

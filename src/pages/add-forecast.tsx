@@ -8,7 +8,7 @@ import Button from '../components/Button/index';
 import fetchWeather from '../utils/fetchWeather';
 
 import { AddData, TwoColumns } from "../styles/add-forecast-style";
-import { weatherCardsState } from "../recoil/atoms";
+import { atomData, weatherCardsState } from "../recoil/atoms";
 
 import { cardData } from "../types/card";
 
@@ -22,12 +22,12 @@ function AddForecasts() {
   const navigate = useNavigate();
 
   const addCard = (data: cardData) => {
-    let newCardList: cardData[] = [];
+    let newCardList: atomData[] = [];
 
     setCardlist((oldCards) => {
       newCardList = [
         ...oldCards,
-        { ...data },
+        { ...data, updating: false },
       ];
       window.localStorage.setItem('weatherCards', JSON.stringify(newCardList))
 

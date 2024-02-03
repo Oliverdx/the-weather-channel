@@ -3,21 +3,30 @@ import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom"
 
 import { cardData } from "../types/card";
-import { weatherCardsState } from "../recoil/atoms";
+import { atomData, weatherCardsState } from "../recoil/atoms";
+
+import WeatherCard from "../components/WeatherCard";
+import { CardsWrapper } from "../styles/forecasts-style";
 
 function Forecasts() {
-  const cardList: cardData[] = useRecoilValue(weatherCardsState);
+  const cardList: atomData[] = useRecoilValue(weatherCardsState);
+
+  const mockData = {
+    apparent_temperature: "23.3°C",
+    humidity: "82%",
+    id: "38i04",
+    temperature: "21.9°C",
+    wind_speed: "12.2km/h",
+    updating: false
+  }
 
   return <>
-    <h1>Weather Cards</h1>
-    {cardList.length > 0 && cardList.map(card => (
-      <div key={card.id}>
-        <h3>{card.temperature}</h3>
-        <span>{card.humidity}</span><br />
-        <span>{card.apparent_temperature}</span><br />
-        <span>{card.wind_speed}</span>
-      </div>)
-    )}
+    <h1>The Weather Channel</h1>
+    <CardsWrapper>
+
+      {cardList.length > 0 && cardList.map(card => (
+        <WeatherCard key={card.id} data={card} />))}
+    </CardsWrapper>
 
     <Link to="/add-forecasts">Add new Forecast</Link>
   </>
