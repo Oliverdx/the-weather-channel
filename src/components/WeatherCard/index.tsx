@@ -13,7 +13,8 @@ import {
   CardBody,
   CardFooter,
   SmallInfoWrapper,
-  SmallInfo
+  SmallInfo,
+  ButtonsWrapper
 } from "./style";
 
 function WeatherCard({ data }: { data: atomData }) {
@@ -35,20 +36,22 @@ function WeatherCard({ data }: { data: atomData }) {
 
   return <WeatherCardWrapper>
     <CardHeader>
-      <button onClick={() => removeCard(data)}>
-        REMOVE ITEM
-      </button>
       <div className="position">
         <p>Lat: {data.latitude}</p>
         <p>Log: {data.longitude}</p>
       </div>
-      <button className="updating-btn" onClick={() => UpdateCard()}>
-        <img
-          className={`updating-btn_image-${updatingCard ? "updating" : "update"}`}
-          src="/icons/update.svg"
-          alt="Update Icon"
-        />
-      </button>
+      <ButtonsWrapper>
+        <button className="remove-btn" onClick={() => removeCard(data)}>
+        </button>
+        <button className="updating-btn" onClick={() => UpdateCard()}>
+          <img
+            className={`updating-btn_image-${updatingCard ? "updating" : "update"}`}
+            src="/icons/update.svg"
+            alt="Update Icon"
+          />
+        </button>
+
+      </ButtonsWrapper>
     </CardHeader>
     <CardBody>
       <div className="weather">

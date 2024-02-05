@@ -27,19 +27,47 @@ export const CardHeader = styled.section`
       margin: 0;
     }
   }
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: grid;
+  justify-content: center;
+  flex-direction: column;
+  grid-gap: 10px;
+  width: 30px;
+
+  .remove-btn,
+  .updating-btn{
+    width: 30px;
+    height: 30px;
+  }
+
+  .remove-btn{
+    &:hover:after{
+      color: #F00;
+      cursor: pointer;
+    }
+
+    &:after{
+      display: block;
+      content: "\\00d7";
+      color: #FFF;
+      font-size: 40px;
+      line-height: 30px;
+    }
+  }
 
   .updating-btn{
-    width: 20px;
-    height: 30px;
-    appearance: none;
-    -webkit-appearance: none;
-    border: none;
-    background: none;
-
       &_image-update,
       &_image-updating{
         width: 30px;
         height: auto;
+      }
+
+      &:hover{
+        animation: 500ms 1 forwards updatingMotion;
+        transform-origin: center center;
+        cursor: pointer;
       }
 
       &_image-updating{
@@ -53,7 +81,7 @@ export const CardHeader = styled.section`
         transform: rotate(0deg)
       }
       100%{
-        transform: rotate(270deg);
+        transform: rotate(180deg);
       }
     }
   }
