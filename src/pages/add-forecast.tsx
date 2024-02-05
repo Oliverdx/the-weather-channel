@@ -53,7 +53,7 @@ function AddForecasts() {
   };
 
   const isValidCoordinates = () => {
-    const coordinatesPattern = /^([-+]?\d{1,3}(?:\.\d{1,})?)(?:,\s*|,\s+)?([-+]?\d{1,2}(?:\.\d{1,})?)$/;
+    const coordinatesPattern = /^([-+]?\d{1,3}(?:\.\d{1,})?)(?:,\s*|,\s+)?([-+]?\d{1,3}(?:\.\d{1,})?)$/;
     const match = latLong.match(coordinatesPattern);
 
     if (match) {
