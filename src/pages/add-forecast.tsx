@@ -14,8 +14,7 @@ import { cardData } from "../types/card";
 
 function AddForecasts() {
   const [error, setError] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+  const [latLong, setLatLong] = useState("");
 
   const setCardlist = useSetRecoilState(weatherCardsState);
 
@@ -43,21 +42,31 @@ function AddForecasts() {
   }
 
   // useEffect(() => {
-  const fetchData = async () => {
+  const fetchData = async (lat: string, long: string) => {
     try {
       // const data: cardData = await fetchWeather("-14.875", "-40.875");
-      const data: cardData = await fetchWeather(latitude, longitude);
+      const data: cardData = await fetchWeather(lat, long);
       addCard(data);
     } catch (error) {
       setError(`Erro ao recuperar os dados: ${error}`);
     }
   };
 
-  const handleCatchData = (value: string, type: "latitude" | "longitude") => {
-    if (type === "longitude") {
-      setLongitude(value);
-    } else {
-      setLatitude(value);
+  const isValidCoordinates = () => {
+    const coordinatesPattern = /^([-+]?\d{1,3}(?:\.\d{1,})?)(?:,\s*|,\s+)?([-+]?\d{1,2}(?:\.\d{1,})?)$/;
+    const match = latLong.match(coordinatesPattern);
+
+    if (match) {
+      const latitude = parseFloat(match[1]);
+      const longitude = parseFloat(match[2]);
+
+      if (longitude >= -180 && longitude <= 180 &&
+        latitude >= -90 && latitude <= 90
+      ) {
+        fetchData(latitude.toString(), longitude.toString())
+      } else {
+        setError("Formatação incorreta, Por favor use um formato Ex: 12.3456, -78.9012");
+      }
     }
   }
 
@@ -67,26 +76,21 @@ function AddForecasts() {
   // PS: Will be necessary add openmeteo library
 
   return <AddData>
-    <h1>Entre com os dados de latitude e longitude<br />
+    <h1 className="title">Entre com os dados de latitude e longitude
       para adicionar um novo card</h1>
+    <span className="subtitle">Use o formato "XX.XXX, XXX.XXX", separando latitude e longitude por virgula</span>
     <TwoColumns>
       <Input
-        type="text"
-        label="Latitude"
-        onChange={event => handleCatchData(event.target.value, "latitude")}
-        required
-      />
-      <Input
-        type="text"
-        label="Longitude"
-        onChange={event => handleCatchData(event.target.value, "longitude")}
+        type="textr"
+        label="Latitude & Longitude"
+        onChange={event => setLatLong(event.target.value)}
         required
       />
     </TwoColumns>
-    <Button onClick={() => fetchData()}>
+    <Button onClick={() => isValidCoordinates()}>
       Adicionar
     </Button>
-    {error !== "" && <p>{error}</p>}
+    {error !== "" && <p className="text-error">{error}</p>}
   </AddData>
 }
 

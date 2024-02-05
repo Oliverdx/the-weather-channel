@@ -23,10 +23,13 @@ export const ForecastPageWrapper = styled.div`
     position: fixed;
     right: 50px;
     bottom: 50px;
+    background: #444;
+    border-radius: 100%;
+    cursor: pointer;
     
     img{
-      width: 75px;
-      height: 75px;
+      width: 50px;
+      height: 50px;
     }
   }
 `;

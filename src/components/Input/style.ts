@@ -5,19 +5,22 @@ export const InputWrapper = styled.div`
 
   label {
     position: relative;
-    width: 300px;
+    width: 500px;
     height: 50px;
     display: block;
   }
 
   span{
     position: absolute;
-    top: 27px;
+    display: block;
+    width: 100%;
+    top: 20px;
     left: 50%;
     font-size: 18px;
     transform: translateX(-50%);
     transition: ease all 300ms;
   }
+  
 
   input{
     position: absolute;
@@ -32,6 +35,12 @@ export const InputWrapper = styled.div`
     font-size: 1em;
     color: #FFF;
     outline: none;
+
+    &:hover{
+      apperance: none;
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
   label:has( > input:required:valid) span,
