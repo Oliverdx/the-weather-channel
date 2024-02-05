@@ -1,8 +1,9 @@
 import { PARAMS, TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../constants/weather";
-import { cardData, weatherParams } from "../types/card";
+import { atomData } from "../recoil/atoms";
+import { weatherParams } from "../types/card";
 
 async function fetchWeather(latitude: string, longitude: string, id?:string){
-  let weatherData: cardData;
+  let weatherData: atomData;
 
   try{
 
@@ -25,14 +26,15 @@ async function fetchWeather(latitude: string, longitude: string, id?:string){
       temperature: `${current?.temperature_2m}${current_units?.temperature_2m}`,
       humidity:`${current?.relative_humidity_2m}${current_units?.relative_humidity_2m}`,
       apparent_temperature:`${current?.apparent_temperature}${current_units?.apparent_temperature}`,
-      wind_speed: `${current?.wind_speed_10m}${current_units?.wind_speed_10m}`
+      wind_speed: `${current?.wind_speed_10m}${current_units?.wind_speed_10m}`,
+      updating: false
     }
 
   }catch(err){
     throw new Error(`Algo deu errado: ${err}`);
   }
 
-  return weatherData;
+  return weatherData || {};
 
 }
 

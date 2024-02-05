@@ -6,7 +6,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "[name].chunk.js",
-    asyncChunks: true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

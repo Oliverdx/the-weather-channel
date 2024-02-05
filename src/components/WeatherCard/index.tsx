@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { atomData, weatherCardsState } from "../../recoil/atoms";
-import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../../constants/weather";
+import { removeWeatherCard, updateWeatherCard } from "../../recoil/selectors";
+
+import fetchWeather from "../../utils/fetchWeather";
 
 import {
   WeatherCardWrapper,
@@ -11,17 +13,20 @@ import {
   CardBody,
   CardFooter,
   SmallInfoWrapper,
-  SmallInfo
+  SmallInfo,
+  ButtonsWrapper
 } from "./style";
-import fetchWeather from "../../utils/fetchWeather";
 
 function WeatherCard({ data }: { data: atomData }) {
   const [updatingCard, setUpdatingCard] = useState(false);
+  const updateData = useSetRecoilState(updateWeatherCard(data.id));
+  const removeCard = useSetRecoilState(removeWeatherCard(data.id));
 
   const UpdateCard = async () => {
     setUpdatingCard(true);
     try {
-      await fetchWeather(data.latitude, data.latitude, data.id);
+      const cardUpdated: atomData = await fetchWeather(data.latitude, data.longitude, data.id);
+      updateData(cardUpdated);
       setUpdatingCard(false);
     } catch (err) {
       setUpdatingCard(false);
@@ -35,13 +40,18 @@ function WeatherCard({ data }: { data: atomData }) {
         <p>Lat: {data.latitude}</p>
         <p>Log: {data.longitude}</p>
       </div>
-      <button className="updating-btn" onClick={() => UpdateCard()}>
-        <img
-          className={`updating-btn_image-${updatingCard ? "updating" : "update"}`}
-          src="/icons/update.svg"
-          alt="Update Icon"
-        />
-      </button>
+      <ButtonsWrapper>
+        <button className="remove-btn" onClick={() => removeCard(data)}>
+        </button>
+        <button className="updating-btn" onClick={() => UpdateCard()}>
+          <img
+            className={`updating-btn_image-${updatingCard ? "updating" : "update"}`}
+            src="/icons/update.svg"
+            alt="Update Icon"
+          />
+        </button>
+
+      </ButtonsWrapper>
     </CardHeader>
     <CardBody>
       <div className="weather">

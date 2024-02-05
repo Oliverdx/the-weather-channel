@@ -15,6 +15,13 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: "Fira Sans", sans-serif;
   }
+  
+  button{
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background: none;
+  }
 
   :root{
     --dark-gray: #444;
