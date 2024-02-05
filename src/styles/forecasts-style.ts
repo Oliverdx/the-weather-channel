@@ -32,6 +32,33 @@ export const ForecastPageWrapper = styled.div`
       height: 50px;
     }
   }
+
+  @media screen and (max-width: 1019px){
+    h1{
+      font-size: 30px;
+    }
+
+    h2{
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 768px){
+
+    h1,h2{
+      width: 90%;
+    }
+
+    h1{
+      font-size: 25px;
+      margin: 0 auto;
+    }
+
+    h2{
+      font-size: 18px;
+      margin: 30px auto;
+    }
+  }
 `;
 
 export const CardsWrapper = styled.div`
@@ -41,4 +68,17 @@ export const CardsWrapper = styled.div`
   justify-content: center;
   width: 1000px;
   margin: 30px auto;
+
+  @media only screen and (max-width: 1019px){
+    width: 700px;
+    grid-template-columns: repeat(2, 300px);
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 768px){
+    width: 350px;
+    grid-template-columns: repeat(1, 300px);
+    margin: 30px auto 0;
+  }
 `;

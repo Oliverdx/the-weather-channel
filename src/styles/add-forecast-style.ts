@@ -23,10 +23,29 @@ export const AddData = styled.div`
     margin: 20px 0;
     color: #F33;
   }
+
+  @media screen and (max-width: 768px){
+    .title{
+      width: 90%;
+      font-size: 25px;
+      margin: 0 auto;
+    }
+
+    .subtitle{
+      width: 90%;
+      font-size: 14px;
+      margin: 30px auto;
+    }
+
+  }
 `;
 
 export const TwoColumns = styled.div`
   display: flex;
   justify-content: center;
   column-count: 2;
+
+  @media screen and (max-width: 768px){
+    width: 80%;
+  }
 `;
