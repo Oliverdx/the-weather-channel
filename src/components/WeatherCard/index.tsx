@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import { atomData, weatherCardsState } from "../../recoil/atoms";
 import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../../constants/weather";
@@ -14,14 +14,17 @@ import {
   SmallInfo
 } from "./style";
 import fetchWeather from "../../utils/fetchWeather";
+import { updateWeatherCard } from "../../recoil/selectors";
 
 function WeatherCard({ data }: { data: atomData }) {
   const [updatingCard, setUpdatingCard] = useState(false);
+  const [cardData, updateData] = useRecoilState(updateWeatherCard(data.id))
 
   const UpdateCard = async () => {
     setUpdatingCard(true);
     try {
-      await fetchWeather(data.latitude, data.latitude, data.id);
+      const cardUpdated: atomData = await fetchWeather(data.latitude, data.longitude, data.id);
+      updateData(cardUpdated);
       setUpdatingCard(false);
     } catch (err) {
       setUpdatingCard(false);
