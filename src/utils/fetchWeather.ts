@@ -1,7 +1,7 @@
 import { PARAMS, TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../constants/weather";
 import { cardData, weatherParams } from "../types/card";
 
-async function fetchWeather(latitude: string, longitude: string){
+async function fetchWeather(latitude: string, longitude: string, id?:string){
   let weatherData: cardData;
 
   try{
@@ -17,7 +17,7 @@ async function fetchWeather(latitude: string, longitude: string){
       throw new Error(`Por favor verifique os dados digitados e tente novamente`);
 
     weatherData = {
-      id: (Math.random() + 1).toString(36).substring(7),
+      id: id || (Math.random() + 1).toString(36).substring(7),
       latitude: latitude,
       longitude: longitude,
       weather: `${TRANSLATE_WEATHER[current?.weather_code]}`,

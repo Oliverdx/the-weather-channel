@@ -13,42 +13,20 @@ import {
   SmallInfoWrapper,
   SmallInfo
 } from "./style";
+import fetchWeather from "../../utils/fetchWeather";
 
 function WeatherCard({ data }: { data: atomData }) {
   const [updatingCard, setUpdatingCard] = useState(false);
 
-  const [cardList, setCardlist] = useRecoilState(weatherCardsState);
-
-  const updatingList = (mockTemp?: atomData) => cardList.map((card): atomData => {
-    if (card.id === data.id) {
-      const updatedData = mockTemp ? Object.keys(mockTemp).length > 0 ? mockTemp : data : data;
-
-      return {
-        ...updatedData,
-        updating: !data.updating
-      }
-    }
-    return card;
-  });
-
-  const UpdateCard = () => {
+  const UpdateCard = async () => {
     setUpdatingCard(true);
-
-    setTimeout(() => {
-      setCardlist(updatingList({
-        latitude: "14.5153",
-        longitude: "40.5013",
-        apparent_temperature: "17.3°C",
-        weather: TRANSLATE_WEATHER[80],
-        weather_icon: TRANSLATE_ICONS[80],
-        humidity: "100%",
-        id: data.id,
-        temperature: "20.1°C",
-        wind_speed: "10km/h",
-        updating: false
-      }));
+    try {
+      await fetchWeather(data.latitude, data.latitude, data.id);
       setUpdatingCard(false);
-    }, 3000);
+    } catch (err) {
+      setUpdatingCard(false);
+      console.error('Erro ao fazer o update do card')
+    }
   }
 
   return <WeatherCardWrapper>
