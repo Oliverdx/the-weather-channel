@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 
 import { atomData, weatherCardsState } from "../../recoil/atoms";
+import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../../constants/weather";
 
 import {
   WeatherCardWrapper,
@@ -18,11 +19,12 @@ function WeatherCard({ data }: { data: atomData }) {
 
   const [cardList, setCardlist] = useRecoilState(weatherCardsState);
 
-  const updatingList = (mockTemp?: string) => cardList.map((card): atomData => {
+  const updatingList = (mockTemp?: atomData) => cardList.map((card): atomData => {
     if (card.id === data.id) {
+      const updatedData = mockTemp ? Object.keys(mockTemp).length > 0 ? mockTemp : data : data;
+
       return {
-        ...data,
-        temperature: mockTemp || data.temperature,
+        ...updatedData,
         updating: !data.updating
       }
     }
@@ -30,11 +32,21 @@ function WeatherCard({ data }: { data: atomData }) {
   });
 
   const UpdateCard = () => {
-    setCardlist(updatingList());
     setUpdatingCard(true);
 
     setTimeout(() => {
-      setCardlist(updatingList("21.3°C"));
+      setCardlist(updatingList({
+        latitude: "14.5153",
+        longitude: "40.5013",
+        apparent_temperature: "17.3°C",
+        weather: TRANSLATE_WEATHER[80],
+        weather_icon: TRANSLATE_ICONS[80],
+        humidity: "100%",
+        id: data.id,
+        temperature: "20.1°C",
+        wind_speed: "10km/h",
+        updating: false
+      }));
       setUpdatingCard(false);
     }, 3000);
   }
