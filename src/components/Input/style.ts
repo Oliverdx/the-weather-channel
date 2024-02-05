@@ -53,4 +53,17 @@ export const InputWrapper = styled.div`
     transform: translateX(0%)
   }
 
+  @media screen and (max-width: 768px){
+    width: 90%;
+
+    label{
+      width: 100%;
+      margin-bottom: 30px;
+
+      span{
+        font-size: 16px;
+      }
+    }
+  }
+
 `;

@@ -15,6 +15,10 @@ export const WeatherCardWrapper = styled.div`
 export const CardTemperature = styled.h3`
   font-size: 40px;
   font-weight: 300;
+
+  @media screen and (max-width: 1019px){
+    font-size: 30px;
+  }
 `;
 
 export const CardHeader = styled.section`
@@ -26,6 +30,10 @@ export const CardHeader = styled.section`
     p{
       margin: 0;
     }
+  }
+
+  @media screen and (max-width: 1019px){
+    font-size: 13px;
   }
 `;
 
@@ -75,15 +83,6 @@ export const ButtonsWrapper = styled.div`
         transform-origin: center center;
       }
     }
-
-    @keyframes updatingMotion{
-      0%{
-        transform: rotate(0deg)
-      }
-      100%{
-        transform: rotate(180deg);
-      }
-    }
   }
 `;
 
@@ -122,4 +121,9 @@ export const SmallInfo = styled.span`
     height: 20px;
     margin: 0 10px 0 0;
   }
+
+  @media screen and (max-width: 1019px){
+    font-size: 12px;
+  }
+
 `;
