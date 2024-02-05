@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 
 import { atomData, weatherCardsState } from "../../recoil/atoms";
+import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../../constants/weather";
 
 import {
   WeatherCardWrapper,
@@ -12,31 +13,20 @@ import {
   SmallInfoWrapper,
   SmallInfo
 } from "./style";
+import fetchWeather from "../../utils/fetchWeather";
 
 function WeatherCard({ data }: { data: atomData }) {
   const [updatingCard, setUpdatingCard] = useState(false);
 
-  const [cardList, setCardlist] = useRecoilState(weatherCardsState);
-
-  const updatingList = (mockTemp?: string) => cardList.map((card): atomData => {
-    if (card.id === data.id) {
-      return {
-        ...data,
-        temperature: mockTemp || data.temperature,
-        updating: !data.updating
-      }
-    }
-    return card;
-  });
-
-  const UpdateCard = () => {
-    setCardlist(updatingList());
+  const UpdateCard = async () => {
     setUpdatingCard(true);
-
-    setTimeout(() => {
-      setCardlist(updatingList("21.3°C"));
+    try {
+      await fetchWeather(data.latitude, data.latitude, data.id);
       setUpdatingCard(false);
-    }, 3000);
+    } catch (err) {
+      setUpdatingCard(false);
+      console.error('Erro ao fazer o update do card')
+    }
   }
 
   return <WeatherCardWrapper>

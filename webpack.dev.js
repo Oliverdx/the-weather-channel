@@ -6,11 +6,17 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval-nosources-cheap-source-map',
   devServer: {
+    webSocketServer: false,
     static: {
       directory: path.join(__dirname, 'public'),
     },
-    compress: true,
     port: 3000,
     historyApiFallback: true, 
   },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+    },
+  }
 });
