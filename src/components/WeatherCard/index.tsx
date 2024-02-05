@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { atomData, weatherCardsState } from "../../recoil/atoms";
-import { TRANSLATE_ICONS, TRANSLATE_WEATHER } from "../../constants/weather";
+import { removeWeatherCard, updateWeatherCard } from "../../recoil/selectors";
+
+import fetchWeather from "../../utils/fetchWeather";
 
 import {
   WeatherCardWrapper,
@@ -13,12 +15,11 @@ import {
   SmallInfoWrapper,
   SmallInfo
 } from "./style";
-import fetchWeather from "../../utils/fetchWeather";
-import { updateWeatherCard } from "../../recoil/selectors";
 
 function WeatherCard({ data }: { data: atomData }) {
   const [updatingCard, setUpdatingCard] = useState(false);
-  const [cardData, updateData] = useRecoilState(updateWeatherCard(data.id))
+  const updateData = useSetRecoilState(updateWeatherCard(data.id));
+  const removeCard = useSetRecoilState(removeWeatherCard(data.id));
 
   const UpdateCard = async () => {
     setUpdatingCard(true);
@@ -34,6 +35,9 @@ function WeatherCard({ data }: { data: atomData }) {
 
   return <WeatherCardWrapper>
     <CardHeader>
+      <button onClick={() => removeCard(data)}>
+        REMOVE ITEM
+      </button>
       <div className="position">
         <p>Lat: {data.latitude}</p>
         <p>Log: {data.longitude}</p>

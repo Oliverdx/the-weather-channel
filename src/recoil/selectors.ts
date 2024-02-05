@@ -25,3 +25,18 @@ export const updateWeatherCard = selectorFamily({
     })
   }
 });
+
+export const removeWeatherCard = selectorFamily({
+  key: 'removeWeatherCard',
+  get: (id: string) => ({ get }) => {
+    const cards = get(weatherCardsState);
+    return cards.find((card) => card.id === id);
+  },
+  set: (id: string) => ({set}) =>{
+    set(weatherCardsState, prevState => {
+      const newCards = prevState?.filter(card => card.id !== id);
+      window.localStorage.setItem('weatherCards', JSON.stringify(newCards));
+      return newCards;
+    })
+  }
+});

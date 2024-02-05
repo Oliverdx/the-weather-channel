@@ -17,13 +17,20 @@ function Forecasts() {
   const setCardlist = useSetRecoilState(weatherCardsState);
 
   useEffect(() => {
-    if (cardList.length === 0 && localCards) { //Verify if Local has any key first
-      setWeatherCardsList(localCards);
-      setCardlist(localCards);
-    } else if (cardList) {
-      setWeatherCardsList(cardList);
+    setWeatherCardsList(cardList);
+  }, [cardList]);
+
+  useEffect(() => {
+    if (cardList.length === 0) {
+      if (localCards.length > 0) {
+        setWeatherCardsList(localCards);
+        setCardlist(localCards);
+      } else {
+        setCardlist([]);
+      }
     }
-  }, [localCards, cardList]);
+
+  }, [localCards]);
 
   return <ForecastPageWrapper>
     <h1>The Weather Channel - Seu canal do tempo</h1>
